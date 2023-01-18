@@ -10,9 +10,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./Icon.svg";
 import "../styles/style.css";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 function NavScrollExample() {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalSignIn, setModalSignIn] = React.useState(false);
+  const [modalSignUp, setModalSignUp] = React.useState(false);
   return (
     <Navbar bg="white" expand="lg" className="fixed-top px-4" style={{ zIndex: "20" }}>
       <Container fluid>
@@ -30,13 +32,14 @@ function NavScrollExample() {
           </InputGroup>
 
           <Nav style={{ maxHeight: "100px" }} className="my-2 my-lg-0 gap-3" navbarScroll>
-            <Button className="shadow-sm bg" variant="light" onClick={() => setModalShow(true)}>
+            <Button className="shadow-sm bg" variant="light" onClick={() => setModalSignIn(true)}>
               Sign In
             </Button>
-            <SignIn show={modalShow} onHide={() => setModalShow(false)} />
-            <Button className="shadow-sm bg" variant="light">
+            <SignIn show={modalSignIn} onHide={() => setModalSignIn(false)} />
+            <Button className="shadow-sm bg" onClick={() => setModalSignUp(true)} variant="light">
               Sign Up
             </Button>
+            <SignUp show={modalSignUp} onHide={() => setModalSignUp(false)} />
           </Nav>
         </Navbar.Collapse>
       </Container>
