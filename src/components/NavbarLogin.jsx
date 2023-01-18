@@ -9,6 +9,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./Icon.svg";
 import "../styles/style.css";
+import Dropdown from "./Dropdown";
+
+// export default PopoverPositionedExample;
 
 function NavbarLogin() {
   return (
@@ -28,12 +31,7 @@ function NavbarLogin() {
           </InputGroup>
 
           <Nav style={{ maxHeight: "100px" }} className="my-2 my-lg-0 gap-3" navbarScroll>
-            {/* <Button className="shadow-sm bg" variant="light">
-              Sign In
-            </Button>
-            <Button className="shadow-sm bg" variant="light">
-              Sign Up
-            </Button> */}
+            <Dropdown />
           </Nav>
         </Navbar.Collapse>
       </Container>

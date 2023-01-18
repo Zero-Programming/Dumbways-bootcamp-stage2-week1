@@ -39,19 +39,10 @@ export default function Filter() {
 
   return (
     <Col sm={3} style={{ height: "100vh" }}>
-      <form className=" d-flex flex-column gap-4" action="">
+      <Form className=" d-flex flex-column gap-3" action="">
         <div className="d-flex flex-column gap-3">
-          <h5 className="fw-bold m-0">Type Of Rent</h5>
+          <Form.Label className="fw-bold m-0 fs24">Type Of Rent</Form.Label>
           <div className="d-flex gap-3">
-            {/* <Button className=" w-75 bg " variant="light">
-            Day
-          </Button>
-          <Button className="w-75 bg " variant="light">
-            Month
-          </Button>
-          <Button className=" w-75 bg " variant="light">
-            Year
-          </Button> */}
             {dur.map((dur, idx) => (
               <ToggleButton
                 key={idx}
@@ -70,7 +61,7 @@ export default function Filter() {
           </div>
         </div>
         <div className="d-flex flex-column gap-3">
-          <h5 className="fw-bold m-0">Date</h5>
+          <Form.Label className="fw-bold m-0 fs24">Date</Form.Label>
           <InputGroup className="">
             <InputGroup.Text id="basic-addon1">
               <GoCalendar />
@@ -79,9 +70,9 @@ export default function Filter() {
           </InputGroup>
         </div>
         <div className="d-flex flex-column gap-2">
-          <h5 className="fw-bold m-0">Property Room</h5>
+          <Form.Label className="fw-bold m-0 fs24">Property Room</Form.Label>
           <div>
-            <p className="text-secondary m-0 fs14 pb-2">badroom</p>
+            <Form.Label className="text-secondary m-0 fs14 pb-2">badroom</Form.Label>
             <div className="d-flex justify-content-between gap-3">
               {bed.map((bed, idx) => (
                 <ToggleButton
@@ -101,7 +92,7 @@ export default function Filter() {
             </div>
           </div>
           <div>
-            <p className="text-secondary m-0 fs14 pb-2">bathroom</p>
+            <Form.Label className="text-secondary m-0 fs14 pb-2">bathroom</Form.Label>
             <div className="d-flex justify-content-between gap-3">
               {bath.map((bath, idx) => (
                 <ToggleButton
@@ -122,7 +113,7 @@ export default function Filter() {
           </div>
         </div>
         <div className="d-flex flex-column gap-2">
-          <h5 className="fw-bold m-0">Amenities</h5>
+          <Form.Label className="fw-bold m-0 fs24"> Amenities</Form.Label>
           <div className="d-flex justify-content-between">
             <label className="text-secondary" htmlFor="">
               Furnished
@@ -143,7 +134,7 @@ export default function Filter() {
           </div>
         </div>
         <div className="d-flex flex-column gap-3">
-          <h5 className="fw-bold m-0">Budget</h5>
+          <Form.Label className="fw-bold m-0 fs24"> Budget</Form.Label>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
             <Form.Label column sm="5">
               Less than IDR.
@@ -158,7 +149,7 @@ export default function Filter() {
             APPLY
           </Button>
         </div>
-      </form>
+      </Form>
     </Col>
   );
 }

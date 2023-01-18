@@ -3,7 +3,7 @@ import Col from "react-bootstrap/esm/Col";
 import "../styles/style.css";
 // import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import listData from "./data";
+import listData from "./Data";
 
 export default function Content() {
   return (

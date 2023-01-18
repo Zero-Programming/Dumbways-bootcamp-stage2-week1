@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Row className="mx-4 justify-content-between" style={{ paddingTop: "100px" }}>
+      <Row className="mx-4 justify-content-between" style={{ paddingTop: "90px" }}>
         <Filter />
         <Content />
       </Row>
