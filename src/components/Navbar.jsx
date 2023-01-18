@@ -9,38 +9,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./Icon.svg";
 import "../styles/style.css";
-import Modal from "react-bootstrap/Modal";
-
-function MyVerticallyCenteredModal(props) {
-  return (
-    <Modal {...props} size="sm" aria-labelledby="contained-modal-title-vcenter" centered>
-      {/* <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Modal heading</Modal.Title>
-      </Modal.Header> */}
-      <Modal.Body>
-        <h3 className="fw-bold text-center my-5">Sign In</h3>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-            <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
-          </Form.Group>
-          <Button className="w-100" variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </Modal.Body>
-      {/* <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer> */}
-    </Modal>
-  );
-}
+import SignIn from "./SignIn";
 
 function NavScrollExample() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -64,7 +33,7 @@ function NavScrollExample() {
             <Button className="shadow-sm bg" variant="light" onClick={() => setModalShow(true)}>
               Sign In
             </Button>
-            <MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} />
+            <SignIn show={modalShow} onHide={() => setModalShow(false)} />
             <Button className="shadow-sm bg" variant="light">
               Sign Up
             </Button>
