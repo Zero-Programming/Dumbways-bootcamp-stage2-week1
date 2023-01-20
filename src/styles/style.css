@@ -47,3 +47,11 @@
   height: 100%;
   object-fit: cover;
 }
+
+.rs {
+  resize: none;
+}
+
+.bd {
+  border: none !important;
+}

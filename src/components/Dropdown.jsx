@@ -34,7 +34,7 @@ export default function Dropdown() {
                   <hr></hr>
                 </div>
                 <div>
-                  <img className="pe-3" src={LogoutImg} lt="" />
+                  <img className="pe-3" src={LogoutImg} alt="" />
                   <span className="fw-semibold">Logout</span>
                 </div>
               </Popover.Body>

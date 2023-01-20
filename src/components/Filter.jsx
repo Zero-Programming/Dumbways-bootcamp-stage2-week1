@@ -8,57 +8,26 @@ import Row from "react-bootstrap/Row";
 import "../styles/style.css";
 import React, { useState } from "react";
 import ToggleButton from "react-bootstrap/ToggleButton";
-
-// style={{ widht: "30rem", paddingTop: "100px", zIndex: "10" }}
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 
 export default function Filter() {
-  const [durValue, setDurValue] = useState("0");
-  const [bedValue, setBedValue] = useState("0");
-  const [bathValue, setBathValue] = useState("0");
-
-  const dur = [
-    { name: "Day", value: "1" },
-    { name: "Month", value: "2" },
-    { name: "Year", value: "3" },
-  ];
-  const bed = [
-    { name: "1", value: "1" },
-    { name: "2", value: "2" },
-    { name: "3", value: "3" },
-    { name: "4", value: "4" },
-    { name: "5+", value: "5" },
-  ];
-
-  const bath = [
-    { name: "1", value: "1" },
-    { name: "2", value: "2" },
-    { name: "3", value: "3" },
-    { name: "4", value: "4" },
-    { name: "5+", value: "5" },
-  ];
-
   return (
-    <Col sm={3} style={{ height: "100vh" }}>
-      <Form className=" d-flex flex-column gap-3" action="">
+    <Col className="fixed-top bg-white ms-4 pb-4" sm={3} style={{ height: "100vh", paddingTop: "90px", zIndex: "10", overflow: "auto" }}>
+      <Form className=" d-flex flex-column gap-3 me-4" action="">
         <div className="d-flex flex-column gap-3">
           <Form.Label className="fw-bold m-0 fs24">Type Of Rent</Form.Label>
-          <div className="d-flex gap-3">
-            {dur.map((dur, idx) => (
-              <ToggleButton
-                key={idx}
-                id={`dur-${idx}`}
-                type="radio"
-                variant={durValue === dur.value ? "primary" : "light"}
-                name="dur"
-                value={dur.value}
-                checked={durValue === dur.value}
-                onChange={(e) => setDurValue(e.currentTarget.value)}
-                className={"w-75 bg"}
-              >
-                {dur.name}
-              </ToggleButton>
-            ))}
-          </div>
+          <ToggleButtonGroup type="radio" name="typeOfRent" className="d-flex gap-3">
+            <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="typeOfRent-1" value={1}>
+              Day
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="typeOfRent-2" value={2}>
+              Month
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="typeOfRent-3" value={3}>
+              Year
+            </ToggleButton>
+          </ToggleButtonGroup>
         </div>
         <div className="d-flex flex-column gap-3">
           <Form.Label className="fw-bold m-0 fs24">Date</Form.Label>
@@ -73,43 +42,43 @@ export default function Filter() {
           <Form.Label className="fw-bold m-0 fs24">Property Room</Form.Label>
           <div>
             <Form.Label className="text-secondary m-0 fs14 pb-2">badroom</Form.Label>
-            <div className="d-flex justify-content-between gap-3">
-              {bed.map((bed, idx) => (
-                <ToggleButton
-                  key={idx}
-                  id={`bed-${idx}`}
-                  type="radio"
-                  variant={bedValue === bed.value ? "primary" : "light"}
-                  name="bed"
-                  value={bed.value}
-                  checked={bedValue === bed.value}
-                  onChange={(e) => setBedValue(e.currentTarget.value)}
-                  className={"w-100 bg"}
-                >
-                  {bed.name}
-                </ToggleButton>
-              ))}
-            </div>
+            <ToggleButtonGroup type="radio" name="badroom" className="d-flex gap-3">
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="badroom-1" value={1}>
+                1
+              </ToggleButton>
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="badroom-2" value={2}>
+                2
+              </ToggleButton>
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="badroom-3" value={3}>
+                3
+              </ToggleButton>
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="badroom-4" value={4}>
+                4
+              </ToggleButton>
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="badroom-5" value={5}>
+                5+
+              </ToggleButton>
+            </ToggleButtonGroup>
           </div>
           <div>
             <Form.Label className="text-secondary m-0 fs14 pb-2">bathroom</Form.Label>
-            <div className="d-flex justify-content-between gap-3">
-              {bath.map((bath, idx) => (
-                <ToggleButton
-                  key={idx}
-                  id={`bath-${idx}`}
-                  type="radio"
-                  variant={bathValue === bath.value ? "primary" : "light"}
-                  name="bath"
-                  value={bath.value}
-                  checked={bathValue === bath.value}
-                  onChange={(e) => setBathValue(e.currentTarget.value)}
-                  className={"w-100 bg"}
-                >
-                  {bath.name}
-                </ToggleButton>
-              ))}
-            </div>
+            <ToggleButtonGroup type="radio" name="bathroom" className="d-flex gap-3">
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="bathroom-1" value={1}>
+                1
+              </ToggleButton>
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="bathroom-2" value={2}>
+                2
+              </ToggleButton>
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="bathroom-3" value={3}>
+                3
+              </ToggleButton>
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="bathroom-4" value={4}>
+                4
+              </ToggleButton>
+              <ToggleButton variant="outline-primary" className="fw-semibold text-dark bd rounded-2 bg w-100" id="bathroom-5" value={5}>
+                5+
+              </ToggleButton>
+            </ToggleButtonGroup>
           </div>
         </div>
         <div className="d-flex flex-column gap-2">

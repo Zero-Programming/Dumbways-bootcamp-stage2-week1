@@ -3,16 +3,16 @@ import React from "react";
 import Filter from "../components/Filter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Row from "react-bootstrap/Row";
-import Navbar from "../components/Navbar";
-import Content from "../components/Content";
+import NavScrollExample from "../components/Navbar";
+import ContentData from "../components/ContentData";
 
-export default function Home() {
+export default function Home(props) {
   return (
     <>
-      <Navbar />
-      <Row className="mx-4 justify-content-between" style={{ paddingTop: "90px" }}>
+      <NavScrollExample userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} />
+      <Row className="mx-4 justify-content-end" style={{ paddingTop: "90px" }}>
         <Filter />
-        <Content />
+        <ContentData />
       </Row>
     </>
   );

@@ -1,12 +1,10 @@
 import React from "react";
-import HomeLogin from "./pages/HomeLogin";
-import Home from "./pages/Home";
+import RoutesPage from "./components/Routes";
 
 function App() {
   return (
     <>
-      <HomeLogin />
-      {/* <Home /> */}
+      <RoutesPage />
     </>
   );
 }
