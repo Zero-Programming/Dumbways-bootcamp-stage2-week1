@@ -16,7 +16,6 @@ export default function SignIn(props) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(dataUser);
 
     if (dataUser.userName === props.userSignIn.userName && dataUser.password === props.userSignIn.password) {
       e.preventDefault();
@@ -24,13 +23,15 @@ export default function SignIn(props) {
         ...props.userSignIn,
         isLogin: true,
       });
+      localStorage.setItem("UserSignIn", JSON.stringify(props.userSignIn));
+      console.log(props.userSignIn);
       alert("login succses!");
     } else {
       alert("email or password worng!");
     }
   };
 
-  const redirectSignup = (e) => {
+  const redirectSignup = () => {
     props.onHide();
     props.openSignup();
   };
@@ -54,7 +55,7 @@ export default function SignIn(props) {
           </Button>
           <Form.Text className="text-muted">
             Dont have an account? click{" "}
-            <span onClick={(e) => redirectSignup()} className="btn btn-link px-1 py-0">
+            <span onClick={(e) => redirectSignup(e)} className="btn btn-link px-1 py-0">
               Here
             </span>
           </Form.Text>

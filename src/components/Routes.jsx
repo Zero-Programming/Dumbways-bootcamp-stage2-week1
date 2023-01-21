@@ -16,9 +16,9 @@ export default function RoutesPage() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
-        {/* <Route path="/detail-property" element={<DetailProperty book userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
-        <Route path="/profile" element={<Profile userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} /> */}
-        {/* <Route path="/my-booking" element={<MyBooking userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} /> */}
+        <Route path="/detail-property/:id" element={<DetailProperty book userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
+        <Route path="/profile" element={<Profile userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
+        <Route path="/my-booking" element={<MyBooking userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
       </Routes>
     </BrowserRouter>
   );

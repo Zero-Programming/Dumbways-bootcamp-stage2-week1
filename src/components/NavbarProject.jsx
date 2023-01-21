@@ -11,7 +11,7 @@ import logo from "./Icon.svg";
 import "../styles/style.css";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import Dropdown from "./Dropdown";
+import DropdownLogin from "./Dropdown";
 
 function NavbarProject(props) {
   const [modalSignIn, setModalSignIn] = React.useState(false);
@@ -19,6 +19,9 @@ function NavbarProject(props) {
 
   const handleSignup = () => {
     setModalSignUp(true);
+  };
+  const handleSignin = () => {
+    setModalSignIn(true);
   };
 
   return (
@@ -49,13 +52,12 @@ function NavbarProject(props) {
               </>
             ) : (
               <>
-                <Dropdown />
+                <DropdownLogin userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} />
               </>
             )}
-            {/* userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} */}
 
-            <SignIn openSignup={handleSignup} show={modalSignIn} onHide={() => setModalSignIn(false)} />
-            <SignUp show={modalSignUp} onHide={() => setModalSignUp(false)} />
+            <SignIn openSignup={handleSignup} userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} show={modalSignIn} onHide={() => setModalSignIn(false)} />
+            <SignUp openSignin={handleSignin} show={modalSignUp} onHide={() => setModalSignUp(false)} />
           </Nav>
         </Navbar.Collapse>
       </Container>

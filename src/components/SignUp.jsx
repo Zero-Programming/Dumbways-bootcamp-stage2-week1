@@ -14,9 +14,15 @@ export default function SignUp(props) {
     address: "",
   });
 
+  const redirectSignin = (e) => {
+    props.onHide();
+    props.openSignin();
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("UserSignUp", JSON.stringify(userSignUp));
+    redirectSignin();
   };
 
   const handleOnChange = (e) => {
@@ -79,7 +85,7 @@ export default function SignUp(props) {
             <Form.Control className="rs" as="textarea" name="address" style={{ height: "100px" }} />
           </Form.Group>
 
-          <Button className="w-100" variant="primary" type="submit">
+          <Button onClick={(e) => redirectSignin(e)} className="w-100" variant="primary" type="submit">
             Submit
           </Button>
         </Form>

@@ -1,51 +1,57 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
 import fp from "../assets/img/fp.jpg";
-import Button from "react-bootstrap/esm/Button";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Popover from "react-bootstrap/Popover";
-import ProfileImg from "../assets/img/user2.png";
-import CalenderImg from "../assets/img/calendar.png";
-import BillImg from "../assets/img/bill.png";
-import LogoutImg from "../assets/img/logout1.png";
+import { BsPerson, BsCalendar3 } from "react-icons/bs";
+import { RiNewspaperLine } from "react-icons/ri";
+import { FiLogOut } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
-export default function Dropdown() {
+import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
+import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
+
+import Dropdown from "react-bootstrap/Dropdown";
+
+function DropdwonLogin(props) {
+  const navigate = useNavigate();
   return (
     <>
-      {["bottom"].map((placement) => (
-        <OverlayTrigger
-          trigger="click"
-          key={placement}
-          placement={placement}
-          overlay={
-            <Popover id={`popover-positioned-${placement}`}>
-              <Popover.Body className="d-flex flex-column gap-3 pe-5 ">
-                <div>
-                  <img className="pe-3" src={ProfileImg} alt="" />
-                  <span className="fw-semibold">Profile</span>
-                </div>
-                <div>
-                  <img className="pe-3" src={CalenderImg} alt="" />
-                  <span className="fw-semibold">My Booking</span>
-                </div>
-                <div>
-                  <img className="pe-3" src={BillImg} alt="" />
-                  <span className="fw-semibold">History</span>
-                  <hr></hr>
-                </div>
-                <div>
-                  <img className="pe-3" src={LogoutImg} alt="" />
-                  <span className="fw-semibold">Logout</span>
-                </div>
-              </Popover.Body>
-            </Popover>
-          }
-        >
-          <Button className="p-0 rounded-circle" style={{ width: "50px", height: "50px" }} variant="light">
-            <Image roundedCircle className="si" src={fp} />
-          </Button>
-        </OverlayTrigger>
-      ))}
+      <Dropdown align="end" style={{ color: "white", backgroundColor: "white", border: "white" }} id="dropdown-basic-button" title="Dropdown button">
+        <DropdownToggle className="p-0 rounded-circle" style={{ width: "50px", height: "50px" }} variant="white">
+          <Image roundedCircle className="si" src={fp} />
+        </DropdownToggle>
+        <DropdownMenu>
+          <Dropdown.Item className="dropDownNav">
+            <BsPerson />
+            <span style={{ color: "black" }}> Profile</span>
+          </Dropdown.Item>
+          <Dropdown.Item className="dropDownNav">
+            <RiNewspaperLine />
+            <span style={{ color: "black" }}> My Booking</span>
+          </Dropdown.Item>
+          <Dropdown.Item className="dropDownNav">
+            <BsCalendar3 />
+            <span style={{ color: "black" }}> History</span>
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item
+            onClick={() => {
+              navigate("/");
+              localStorage.removeItem("UserSignIn");
+              props.setUserSignIn({
+                ...props.userSignIn,
+                isLogin: false,
+              });
+            }}
+            className="dropDownNav"
+          >
+            <FiLogOut />
+            <span style={{ color: "black" }}> Logout </span>
+          </Dropdown.Item>
+        </DropdownMenu>
+      </Dropdown>
     </>
   );
 }
+
+export default DropdwonLogin;
+// export default VariantsExample;
