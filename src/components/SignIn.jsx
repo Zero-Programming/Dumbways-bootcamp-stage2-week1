@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 
 export default function SignIn(props) {
-  let isLogin = props.isLogin;
-  const dataString = localStorage.getItem("User");
+  const dataString = localStorage.getItem("UserSignUp");
   const dataUser = JSON.parse(dataString);
-  console.log(props);
 
   const handleOnChange = (e) => {
     props.setUserSignIn({
@@ -18,7 +16,7 @@ export default function SignIn(props) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(props.userSignIn);
+    console.log(dataUser);
 
     if (dataUser.userName === props.userSignIn.userName && dataUser.password === props.userSignIn.password) {
       e.preventDefault();
@@ -27,10 +25,14 @@ export default function SignIn(props) {
         isLogin: true,
       });
       alert("login succses!");
-      console.log(props.setUserSignIn.isLogin);
     } else {
       alert("email or password worng!");
     }
+  };
+
+  const redirectSignup = (e) => {
+    props.onHide();
+    props.openSignup();
   };
 
   return (
@@ -46,13 +48,16 @@ export default function SignIn(props) {
           <Form.Group className="mb-3" controlId="password">
             <Form.Label className="fw-bold">Password</Form.Label>
             <Form.Control type="password" placeholder="Password" name="password" onChange={handleOnChange} />
-            <Form.Text className="text-muted">
-              Dont have an account? click <a href="/">Here</a>
-            </Form.Text>
           </Form.Group>
           <Button className="w-100" variant="primary" type="submit">
             Submit
           </Button>
+          <Form.Text className="text-muted">
+            Dont have an account? click{" "}
+            <span onClick={(e) => redirectSignup()} className="btn btn-link px-1 py-0">
+              Here
+            </span>
+          </Form.Text>
         </Form>
       </Modal.Body>
     </Modal>

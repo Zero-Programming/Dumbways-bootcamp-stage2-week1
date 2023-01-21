@@ -2,6 +2,10 @@
   background: rgba(196, 196, 196, 0.25);
 }
 
+.jcb {
+  justify-content: space-between !important;
+}
+
 .bgContent {
   background: #e5e5e5 !important;
 }
@@ -54,4 +58,17 @@
 
 .bd {
   border: none !important;
+}
+
+.pp {
+  margin: 100px 150px !important;
+  padding: 30px;
+}
+
+.myc {
+  height: 419px !important;
+  width: 1035px !important;
+  left: 201px !important;
+  top: 193px !important;
+  border-radius: 5px !important;
 }

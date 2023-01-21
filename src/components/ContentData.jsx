@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Link } from "react";
 import Col from "react-bootstrap/esm/Col";
 import "../styles/style.css";
 // import Button from "react-bootstrap/Button";
@@ -9,13 +9,15 @@ export default function ContentData() {
   return (
     <>
       <Col className="ms-5 d-flex justify-content-end" sm={9}>
-        <div className="bg">
+        <div className="bg" style={{ paddingTop: "90px" }}>
           <div className="d-flex warp justify-content-evenly mt-5">
             {listData.map((value, index) => {
               return (
                 <Card key={index} className="wc p-2 mb-5  d-flex selector-for-some-widget">
+                  {/* <Link to={"/detail-property/" + index}> */}
                   <span className="position-absolute px-3 py-1 bg-white rounded-2 fs10 mt-2 ms-2">{value.amenities}</span>
                   <Card.Img className="pb-1" variant="top" src={require("../assets/img/" + value.image)} />
+                  {/* </Link> */}
                   <Card.Body className=" bs m-0 p-0 d-flex flex-column gap-1">
                     <Card.Title className="fs16 fw-bold m-0 p-0">
                       {value.price} / {value.rent}

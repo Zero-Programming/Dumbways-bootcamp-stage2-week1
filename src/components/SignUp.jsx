@@ -16,7 +16,7 @@ export default function SignUp(props) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("User", JSON.stringify(userSignUp));
+    localStorage.setItem("UserSignUp", JSON.stringify(userSignUp));
   };
 
   const handleOnChange = (e) => {
@@ -28,9 +28,20 @@ export default function SignUp(props) {
 
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
-      <Modal.Body>
-        <h3 className="fw-bold text-center my-5">Sign Up</h3>
-        <Form onSubmit={handleOnSubmit}>
+      <Modal.Body
+        style={{
+          height: "600px",
+          overflow: "hidden",
+        }}
+      >
+        <h1 className="fw-bold text-center my-5">Sign Up</h1>
+        <Form
+          onSubmit={handleOnSubmit}
+          style={{
+            height: "420px",
+            overflow: "auto",
+          }}
+        >
           <Form.Group className="mb-3" controlId="fullName" onChange={handleOnChange}>
             <Form.Label className="fw-bold">Full Name</Form.Label>
             <Form.Control type="text" placeholder="" name="fullName" />

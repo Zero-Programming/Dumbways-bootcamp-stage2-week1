@@ -13,9 +13,13 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Dropdown from "./Dropdown";
 
-function NavScrollExample(props) {
+function NavbarProject(props) {
   const [modalSignIn, setModalSignIn] = React.useState(false);
   const [modalSignUp, setModalSignUp] = React.useState(false);
+
+  const handleSignup = () => {
+    setModalSignUp(true);
+  };
 
   return (
     <Navbar bg="white" expand="lg" className="fixed-top px-4" style={{ zIndex: "20" }}>
@@ -48,8 +52,9 @@ function NavScrollExample(props) {
                 <Dropdown />
               </>
             )}
+            {/* userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} */}
 
-            <SignIn userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} show={modalSignIn} onHide={() => setModalSignIn(false)} />
+            <SignIn openSignup={handleSignup} show={modalSignIn} onHide={() => setModalSignIn(false)} />
             <SignUp show={modalSignUp} onHide={() => setModalSignUp(false)} />
           </Nav>
         </Navbar.Collapse>
@@ -58,4 +63,4 @@ function NavScrollExample(props) {
   );
 }
 
-export default NavScrollExample;
+export default NavbarProject;

@@ -11,6 +11,8 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 
+// style={{ widht: "30rem", paddingTop: "100px", zIndex: "10" }}
+
 export default function Filter() {
   return (
     <Col className="fixed-top bg-white ms-4 pb-4" sm={3} style={{ height: "100vh", paddingTop: "90px", zIndex: "10", overflow: "auto" }}>
