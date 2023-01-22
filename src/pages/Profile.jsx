@@ -48,7 +48,7 @@ export default function Profile(props) {
               </div>
             </div>
             <div className="d-flex align-items-center gap-3">
-              <img width={50} src={imgp7} alt="" />
+              <img width={40} src={imgp7} alt="" />
               <div className="d-flex flex-column">
                 <span className="p-0 m-0">Zero</span>
                 <span className="fs14 text-secondary">Status</span>

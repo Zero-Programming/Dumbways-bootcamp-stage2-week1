@@ -4,7 +4,7 @@ import fp from "../assets/img/fp.jpg";
 import { BsPerson, BsCalendar3 } from "react-icons/bs";
 import { RiNewspaperLine } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import User from "../assets/img/user2.png";
 import Cal from "../assets/img/calendar.png";
 import Bill from "../assets/img/bill.png";
@@ -17,8 +17,11 @@ import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import Dropdown from "react-bootstrap/Dropdown";
 
 function DropdwonLogin(props) {
+  const dataId = JSON.parse(localStorage.getItem("DataId"));
+  const status = JSON.parse(localStorage.getItem("UserSignUp"));
+  const { id } = useParams();
   const navigate = useNavigate();
-  console.log(props.userSignIn.listAs);
+
   return (
     <>
       <Dropdown align="end" style={{ color: "white", backgroundColor: "white", border: "white" }} id="dropdown-basic-button" title="Dropdown button">
@@ -27,28 +30,38 @@ function DropdwonLogin(props) {
         </DropdownToggle>
         <DropdownMenu>
           <Dropdown.Item
-            // onClick={() => {
-            //   <Link></Link>("/profile");
-            // }}
+            onClick={() => {
+              navigate("/profile");
+            }}
             className="dropDownNav"
           >
             <img className="pe-2" src={User} alt="" />
             <span style={{ color: "black" }}> Profile</span>
           </Dropdown.Item>
-          <Dropdown.Item className="dropDownNav">
-            {props.userSignIn.listAs === "Tenant" ? (
-              <>
-                <img className="pe-2" src={Cal} alt="" />
-                <span style={{ color: "black" }}> My Booking</span>
-              </>
-            ) : (
-              <>
-                <img className="pe-2" src={Cabin} alt="" />
-                <span style={{ color: "black" }}>Add Property</span>
-              </>
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item className="dropDownNav">
+
+          {status.listAs === "Tenant" ? (
+            <Dropdown.Item
+              onClick={() => {
+                navigate(`/my-booking/${dataId}`);
+              }}
+              className="dropDownNav"
+            >
+              <img className="pe-2" src={Cal} alt="" />
+              <span style={{ color: "black" }}> My Booking</span>{" "}
+            </Dropdown.Item>
+          ) : (
+            <Dropdown.Item className="dropDownNav">
+              <img className="pe-2" src={Cabin} alt="" />
+              <span style={{ color: "black" }}>Add Property</span>{" "}
+            </Dropdown.Item>
+          )}
+
+          <Dropdown.Item
+            onClick={() => {
+              navigate(`/history`);
+            }}
+            className="dropDownNav"
+          >
             <img className="pe-2" src={Bill} alt="" />
             <span style={{ color: "black" }}> History</span>
           </Dropdown.Item>

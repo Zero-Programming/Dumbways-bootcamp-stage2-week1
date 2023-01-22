@@ -31,6 +31,18 @@ function PayModal(props) {
 }
 
 export default function DetailProperty(props) {
+  const Results = () => (
+    <Button
+      onClick={() => {
+        setModalShow(true);
+        localStorage.setItem("statusPay", "Success!");
+      }}
+      style={{ width: "200px" }}
+    >
+      Pay
+    </Button>
+  );
+
   const [modalShow, setModalShow] = React.useState(false);
   useEffect(() => {
     document.body.style.background = "rgba(196, 196, 196, 0.25)";
@@ -39,6 +51,7 @@ export default function DetailProperty(props) {
   const { id } = useParams();
   const getData = JSON.parse(localStorage.getItem("Date"));
   const Profile = JSON.parse(localStorage.getItem("UserSignUp"));
+
   console.log(Profile);
 
   console.log(getData);
@@ -46,7 +59,7 @@ export default function DetailProperty(props) {
     <>
       <NavbarProject userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} />
       <Container className="myc fmb" style={{ width: "60%", marginTop: "200px" }}>
-        <div className="border border-3 p-4 pb-0">
+        <div className="border border-3 p-4 pe-0 pb-0">
           <Row style={{}} className="d-flex jcb">
             <Col className="" md="auto" lg={4}>
               <img src={Icon} alt="" />
@@ -59,7 +72,8 @@ export default function DetailProperty(props) {
           <Row style={{}} className="d-flex jcb align-items-center pb-3">
             <Col className="" md="auto" lg={4}>
               <h5 className="fw-bold">House Astina</h5>
-              <p>Jl. Elang IV Perum Permata Bintaro Residence, Pondok Aren,Tangerang Selatan</p>
+              <p>{listData[id].address}</p>
+              {!localStorage.getItem("statusPay") ? <p className="bg-danger w-50 text-center p-1 bg-opacity-10 text-danger">Waiting Payment</p> : <p className="bg-warning w-50 text-center p-1 bg-opacity-10 text-warning">Waiting Approve</p>}
             </Col>
             <Col className="" md="auto" lg={4}>
               <div className="d-flex flex-column ">
@@ -114,10 +128,6 @@ export default function DetailProperty(props) {
                 />
                 <span className="d-block py-2 px-3">Upload Image</span>
               </Button>
-              {/* <Form.Group controlId="formFile" className="mb-3">
-              <Form.Label>upload proof of payment</Form.Label>
-              <Form.Control type="file" />
-            </Form.Group> */}
             </Col>
           </Row>
           <Row className="d-flex">
@@ -164,15 +174,17 @@ export default function DetailProperty(props) {
                 <p className=" m-0 ps-3 py-2">Total</p>
               </Col>
               <Col className="d-flex align-items-center" lg={2}>
-                <p className="m-0 text-danger fw-bold">: {listData[id - 1].price}</p>
+              {!localStorage.getItem("statusPay") ? <p className="m-0 text-danger fw-bold">: {listData[id - 1].price}</p> : <p className="m-0 text-warning fw-bold">: {listData[id - 1].price}</p>}
+                
               </Col>
             </Row>
           </Row>
         </div>
         <div className="d-flex justify-content-end">
-          <Button onClick={() => setModalShow(true)} style={{ width: "200px" }}>
+          {/* <Button onClick={() => setModalShow(true)} style={{ width: "200px" }}>
             Pay
-          </Button>
+          </Button> */}
+          {!localStorage.getItem("statusPay") ? <Results /> : null}
           <PayModal show={modalShow} onHide={() => setModalShow(false)} />
         </div>
       </Container>

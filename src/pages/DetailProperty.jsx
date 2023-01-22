@@ -2,21 +2,18 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarProject from "../components/NavbarProject";
 import Container from "react-bootstrap/esm/Container";
-import ImgDp1 from "../assets/img/imgpd1.png";
-import ImgDp2 from "../assets/img/imgpd2.png";
-import ImgDp3 from "../assets/img/imgpd3.png";
-import ImgDp4 from "../assets/img/imgpd4.png";
 import bathimg from "../assets/img/bathimg.png";
 import bedimg from "../assets/img/bedimg.png";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
-import listData from "../components/Data";
-import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Form from "react-bootstrap/Form";
+import SignIn from "../components/SignIn";
+import SignUp from "../components/SignUp";
 
 import Modal from "react-bootstrap/Modal";
+import listData from "../components/Data";
 
 function MyBookModal(props) {
   const { id } = useParams();
@@ -37,6 +34,8 @@ function MyBookModal(props) {
   const handle = (e) => {
     // e.preventDefault();
     localStorage.setItem("Date", JSON.stringify(checkIn));
+    localStorage.setItem("Data", JSON.stringify(listData[id]));
+    localStorage.setItem("DataId", id);
   };
 
   return (
@@ -76,8 +75,19 @@ export default function DetailProperty(props) {
     document.body.style.background = "rgba(196, 196, 196, 0.25)";
   });
 
+  const [modalSignIn, setModalSignIn] = React.useState(false);
+  const [modalSignUp, setModalSignUp] = React.useState(false);
+
+  const handleSignin = () => {
+    setModalSignIn(true);
+  };
+  const handleSignup = () => {
+    setModalSignUp(true);
+  };
+
   const [modalShow, setModalShow] = React.useState(false);
   const { id } = useParams();
+  const listData = props.listData;
 
   return (
     <>
@@ -137,10 +147,19 @@ export default function DetailProperty(props) {
               <p style={{ textAlign: "justify" }}>{listData[id - 1].description}</p>
             </div>
             <div className="d-flex justify-content-md-end">
-              <Button className=" mt-5 px-5" onClick={() => setModalShow(true)}>
-                Book Now
-              </Button>
+              {!localStorage.getItem("UserSignIn") ? (
+                <Button className=" mt-5 px-5" onClick={() => setModalSignIn(true)}>
+                  Book Now
+                </Button>
+              ) : (
+                <Button className=" mt-5 px-5" onClick={() => setModalShow(true)}>
+                  Book Now
+                </Button>
+              )}
+
               <MyBookModal show={modalShow} onHide={() => setModalShow(false)} />
+              <SignIn openSignup={handleSignup} userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} show={modalSignIn} onHide={() => setModalSignIn(false)} />
+              <SignUp openSignin={handleSignin} show={modalSignUp} onHide={() => setModalSignUp(false)} />
             </div>
           </Col>
         </Row>

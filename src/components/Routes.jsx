@@ -5,6 +5,8 @@ import { useState } from "react";
 import DetailProperty from "../pages/DetailProperty";
 import Profile from "../pages/Profile.jsx";
 import MyBooking from "../pages/MyBoking";
+import Invoice from "../pages/Invoice";
+import listData from "../components/Data";
 
 export default function RoutesPage() {
   const [userSignIn, setUserSignIn] = useState({
@@ -17,10 +19,10 @@ export default function RoutesPage() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
-        <Route path="/detail-property/:id" element={<DetailProperty book userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
+        <Route path="/detail-property/:id" element={<DetailProperty book userSignIn={userSignIn} setUserSignIn={setUserSignIn} listData={listData} />} />
         <Route path="/profile" element={<Profile userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
         <Route path="/my-booking/:id" element={<MyBooking userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
-        <Route path="/invoice" element={<MyBooking userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
+        <Route path="/history/" element={<Invoice userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
       </Routes>
     </BrowserRouter>
   );

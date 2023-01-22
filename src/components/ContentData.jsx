@@ -26,7 +26,7 @@ export default function ContentData() {
                       {value.price} / {value.rent}
                     </Card.Title>
                     <Card.Text className="fs10 m-0 p-0 fw-semibold">{value.property.beds + " beds, " + value.property.Bats + " Bats, " + value.property.Area}</Card.Text>
-                    <Card.Text className="fs10 m-0 p-0 lh-lg text-secondary fw-semibold">{value.addres}</Card.Text>
+                    <Card.Text className="fs10 m-0 p-0 lh-lg text-secondary fw-semibold">{value.address}</Card.Text>
                   </Card.Body>
                 </Card>
               );

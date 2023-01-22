@@ -12,22 +12,25 @@ import "../styles/style.css";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import DropdownLogin from "./Dropdown";
+import { useNavigate } from "react-router-dom";
 
 function NavbarProject(props) {
   const [modalSignIn, setModalSignIn] = React.useState(false);
   const [modalSignUp, setModalSignUp] = React.useState(false);
+  // const navigate = useNavigate()
 
   const handleSignup = () => {
     setModalSignUp(true);
   };
+
   const handleSignin = () => {
     setModalSignIn(true);
   };
-
+  
   return (
     <Navbar bg="white" expand="lg" className="fixed-top px-4" style={{ zIndex: "20" }}>
       <Container fluid>
-        <Navbar.Brand href="#" style={{ marginRight: "31%" }}>
+        <Navbar.Brand href="/" style={{ marginRight: "31%" }}>
           <img src={logo} alt="" width={120} />
         </Navbar.Brand>
 
@@ -41,7 +44,7 @@ function NavbarProject(props) {
           </InputGroup>
 
           <Nav style={{ maxHeight: "100px" }} className="my-2 my-lg-0 gap-3" navbarScroll>
-            {!props.userSignIn.isLogin ? (
+            {!localStorage.getItem("UserSignIn") ? (
               <>
                 <Button className="shadow-sm bg" variant="light" onClick={() => setModalSignIn(true)}>
                   Sign In
