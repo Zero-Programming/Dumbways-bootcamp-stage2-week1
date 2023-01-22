@@ -15,7 +15,7 @@
 }
 
 .wb {
-  width: 55px;
+  width: 100px;
 }
 
 .fs16 {
@@ -39,8 +39,8 @@
 }
 
 .wc {
-  height: 240px;
-  width: 290px;
+  height: 255px;
+  width: 310px;
   left: 0px;
   top: 0px;
   border-radius: 5px;
@@ -66,9 +66,14 @@
 }
 
 .myc {
-  height: 419px !important;
   width: 1035px !important;
   left: 201px !important;
   top: 193px !important;
   border-radius: 5px !important;
+}
+
+.fmb {
+  display: flex !important;
+  flex-direction: column;
+  gap: 20px;
 }

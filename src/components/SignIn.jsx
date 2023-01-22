@@ -22,12 +22,14 @@ export default function SignIn(props) {
       props.setUserSignIn({
         ...props.userSignIn,
         isLogin: true,
+        listAs : dataUser.listAs,
       });
       localStorage.setItem("UserSignIn", JSON.stringify(props.userSignIn));
       console.log(props.userSignIn);
       alert("login succses!");
+      props.onHide();
     } else {
-      alert("email or password worng!");
+      alert("email or password wrong!");
     }
   };
 

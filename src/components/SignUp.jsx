@@ -9,7 +9,7 @@ export default function SignUp(props) {
     userName: "",
     email: "",
     password: "",
-    useAs: "",
+    listAs: "",
     gendre: "",
     address: "",
   });
@@ -60,15 +60,19 @@ export default function SignUp(props) {
             <Form.Label className="fw-bold">Email</Form.Label>
             <Form.Control type="email" placeholder="Enter email" name="email" />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="phone" onChange={handleOnChange}>
+            <Form.Label className="fw-bold">phone</Form.Label>
+            <Form.Control type="text" placeholder="Enter phone number" name="phone" />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="password" onChange={handleOnChange}>
             <Form.Label className="fw-bold">Password</Form.Label>
             <Form.Control type="password" placeholder="Password" name="password" />
           </Form.Group>
           <Form.Group className="mb-3 " controlId="useAs" onChange={handleOnChange}>
-            <Form.Label className="fw-bold">Use As</Form.Label>
-            <Form.Select name="useAs" aria-label="Default select example">
+            <Form.Label className="fw-bold">List As</Form.Label>
+            <Form.Select name="listAs" aria-label="Default select example">
               <option>~Select~</option>
-              <option value="User">User</option>
+              <option value="Tenant">Tenant</option>
               <option value="Owner">Owner</option>
             </Form.Select>
           </Form.Group>

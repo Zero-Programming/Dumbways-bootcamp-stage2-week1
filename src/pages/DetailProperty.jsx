@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarProject from "../components/NavbarProject";
 import Container from "react-bootstrap/esm/Container";
@@ -14,15 +14,70 @@ import Button from "react-bootstrap/esm/Button";
 import listData from "../components/Data";
 import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+
+import Modal from "react-bootstrap/Modal";
+
+function MyBookModal(props) {
+  const { id } = useParams();
+
+  const navigate = useNavigate();
+  const [checkIn, setCheckIn] = useState({
+    check_in: "",
+    check_out: "",
+  });
+
+  const handleOnChange = (e) => {
+    setCheckIn({
+      ...checkIn,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handle = (e) => {
+    // e.preventDefault();
+    localStorage.setItem("Date", JSON.stringify(checkIn));
+  };
+
+  return (
+    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">Modal heading</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group className="mb-3" style={{ display: "flex", flexDirection: "column" }} controlId="exampleForm.ControlInput1">
+            <Form.Label style={{ fontWeight: "bold" }}>Check-in</Form.Label>
+            <Form.Control type="date" name="check_in" onChange={handleOnChange} />
+          </Form.Group>
+          <Form.Group className="mb-3" style={{ display: "flex", flexDirection: "column" }} controlId="exampleForm.ControlInput1">
+            <Form.Label style={{ fontWeight: "bold" }}>Check-Out</Form.Label>
+            <Form.Control type="date" name="check_out" onChange={handleOnChange} />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Button
+          variant="primary"
+          onClick={() => {
+            handle();
+            navigate(`/my-booking/${id}`);
+          }}
+        >
+          Order
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 
 export default function DetailProperty(props) {
   useEffect(() => {
     document.body.style.background = "rgba(196, 196, 196, 0.25)";
   });
 
+  const [modalShow, setModalShow] = React.useState(false);
   const { id } = useParams();
-  const detailProperty = listData[id - 1];
-  const navigate = useNavigate();
 
   return (
     <>
@@ -31,58 +86,61 @@ export default function DetailProperty(props) {
         <Row>
           <Col className="mt-5">
             <div className="mb-4">
-              <img className="w-100" style={{ height: "400px" }} src={require("../assets/img/" + detailProperty.image)} alt="" />
+              <img className="w-100 rounded" style={{ height: "400px", objectFit: "cover" }} src={require("../assets/img/" + listData[id - 1].image)} alt="" />
             </div>
             <div className="mb-5">
               <Row>
                 <Col>
-                  <img className="w-100" src={require("../assets/img/" + detailProperty.image)} alt="" />
+                  <img className="w-100" src={require("../assets/img/" + listData[id - 1].image)} alt="" />
                 </Col>
                 <Col>
-                  <img className="w-100" src={require("../assets/img/" + detailProperty.image)} alt="" />
+                  <img className="w-100" src={require("../assets/img/" + listData[id - 1].image)} alt="" />
                 </Col>
                 <Col>
-                  <img className="w-100" src={require("../assets/img/" + detailProperty.image)} alt="" />
+                  <img className="w-100" src={require("../assets/img/" + listData[id - 1].image)} alt="" />
                 </Col>
               </Row>
             </div>
             <div className="mb-5">
-              <h1 className="fw-bold">{detailProperty.name}</h1>
+              <h1 className="fw-bold">{listData[id - 1].name}</h1>
             </div>
             <div className="d-flex justify-content-between mb-5">
               <Col sm={4}>
-                <h3 className="fw-bold">{detailProperty.price + " / " + detailProperty.rent}</h3>
+                <h3 className="fw-bold">{listData[id - 1].price + " / " + listData[id - 1].rent}</h3>
                 <p>Jl. Elang IV Perum Permata Bintaro Residence, Pondok Aren,Tangerang Selatan</p>
               </Col>
               <Col className="d-flex" sm={3}>
                 <Col>
                   <p className="p-0 m-0">Bedrooms</p>
                   <div className="d-flex gap-2">
-                    <span>{detailProperty.property.beds}</span>
+                    <span>{listData[id - 1].property.beds}</span>
                     <img src={bedimg} alt="" />
                   </div>
                 </Col>
                 <Col>
                   <p className="p-0 m-0">Bathrooms</p>
                   <div className="d-flex gap-2">
-                    <span>{detailProperty.property.Bats}</span>
+                    <span>{listData[id - 1].property.Bats}</span>
                     <img src={bathimg} alt="" />
                   </div>
                 </Col>
                 <Col>
                   <p className="p-0 m-0">Area</p>
                   <div>
-                    <span>{detailProperty.property.Area}</span>
+                    <span>{listData[id - 1].property.Area}</span>
                   </div>
                 </Col>
               </Col>
             </div>
             <div>
               <h4 className="fw-bold">Description</h4>
-              <p style={{ textAlign: "justify" }}>{detailProperty.description}</p>
+              <p style={{ textAlign: "justify" }}>{listData[id - 1].description}</p>
             </div>
             <div className="d-flex justify-content-md-end">
-              <Button className=" mt-5 px-5">Book Now</Button>
+              <Button className=" mt-5 px-5" onClick={() => setModalShow(true)}>
+                Book Now
+              </Button>
+              <MyBookModal show={modalShow} onHide={() => setModalShow(false)} />
             </div>
           </Col>
         </Row>

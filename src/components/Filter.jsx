@@ -15,8 +15,8 @@ import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 
 export default function Filter() {
   return (
-    <Col className="fixed-top bg-white ms-4 pb-4" sm={3} style={{ height: "100vh", paddingTop: "90px", zIndex: "10", overflow: "auto" }}>
-      <Form className=" d-flex flex-column gap-3 me-4" action="">
+    <Col className="fixed-top bg-white ps-4" sm={3} style={{ height: "100vh", zIndex: "10", overflow: "auto", padding: "0", paddingTop: "90px" }}>
+      <Form className=" d-flex flex-column gap-3 me-4 px-3" action="">
         <div className="d-flex flex-column gap-3">
           <Form.Label className="fw-bold m-0 fs24">Type Of Rent</Form.Label>
           <ToggleButtonGroup type="radio" name="typeOfRent" className="d-flex gap-3">

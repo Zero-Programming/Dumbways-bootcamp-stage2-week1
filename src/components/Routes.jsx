@@ -11,6 +11,7 @@ export default function RoutesPage() {
     isLogin: false,
     userName: "",
     password: "",
+    listAs: "",
   });
   return (
     <BrowserRouter>
@@ -18,7 +19,8 @@ export default function RoutesPage() {
         <Route path="/" element={<Home userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
         <Route path="/detail-property/:id" element={<DetailProperty book userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
         <Route path="/profile" element={<Profile userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
-        <Route path="/my-booking" element={<MyBooking userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
+        <Route path="/my-booking/:id" element={<MyBooking userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
+        <Route path="/invoice" element={<MyBooking userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -10,9 +10,9 @@ export default function ContentData() {
   const navigate = useNavigate();
   return (
     <>
-      <Col className="ms-5 d-flex justify-content-end" sm={9}>
+      <Col className="ms-5 d-flex justify-content-end p-0" sm={9}>
         <div className="bg" style={{ paddingTop: "90px" }}>
-          <div className="d-flex warp justify-content-evenly mt-5">
+          <div className="d-flex warp justify-content-between mx-5 mt-5">
             {listData.map((value, index) => {
               return (
                 <Card key={index} className="wc p-2 mb-5  d-flex selector-for-some-widget overflow-hidden">
