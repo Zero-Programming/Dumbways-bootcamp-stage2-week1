@@ -12,66 +12,75 @@ import imgp5 from "../assets/img/imgp5.png";
 import imgp6 from "../assets/img/imgp6.png";
 import imgp7 from "../assets/img/imgp7.png";
 import Button from "react-bootstrap/esm/Button";
+import ChangePassword from "../components/ChangePassword";
 
 export default function Profile(props) {
   useEffect(() => {
     document.body.style.background = "rgba(196, 196, 196, 0.25)";
   });
+
+  const dataUser = JSON.parse(localStorage.getItem("UserSignUp"));
+
+  const [modalShow, setModalShow] = React.useState(false);
+
   return (
     <div className="">
       <NavbarProject userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} />
       <Container className="">
         <Row className="pp justify-content-between bg-white">
-          <Col className="d-flex flex-column gap-3" sm={4}>
+          <Col className="d-flex flex-column gap-4" sm={4}>
             <h3 className="fw-bold ">Personal Info</h3>
             <div className="d-flex align-items-center gap-3">
               <div>
                 <img width={40} src={imgp3} alt="" />
               </div>
               <div className="d-flex flex-column">
-                <span className="p-0 m-0">Zero</span>
+                <span className="p-0 m-0 fw-semibold">{dataUser.fullName}</span>
                 <span className="fs14 text-secondary">Full Name</span>
               </div>
             </div>
             <div className="d-flex align-items-center gap-3">
               <img width={40} src={imgp2} alt="" />
               <div className="d-flex flex-column">
-                <span className="p-0 m-0">Zero</span>
+                <span className="p-0 m-0 fw-semibold">{dataUser.email}</span>
                 <span className="fs14 text-secondary">Email</span>
               </div>
             </div>
             <div className="d-flex align-items-center gap-3">
               <img width={40} src={imgp6} alt="" />
               <div className="d-flex flex-column">
-                <span className="p-0 m-0">Zero</span>
-                <span className="fs14 text-secondary"> Password</span>
+                <Button onClick={() => setModalShow(true)} className="btn btn-dark bg-white text-primary fw-bold p-0 m-0 border-0">
+                  Change Password
+                </Button>
+                <ChangePassword show={modalShow} onHide={() => setModalShow(false)} />
+                <span className="p-0 m-0">Password</span>
               </div>
             </div>
             <div className="d-flex align-items-center gap-3">
               <img width={40} src={imgp7} alt="" />
               <div className="d-flex flex-column">
-                <span className="p-0 m-0">Zero</span>
+                <span className="p-0 m-0 fw-semibold">{dataUser.listAs}</span>
                 <span className="fs14 text-secondary">Status</span>
               </div>
             </div>
             <div className="d-flex align-items-center gap-3">
               <img width={40} src={imgp5} alt="" />
               <div className="d-flex flex-column">
-                <span className="p-0 m-0">Zero</span>
+                <span className="p-0 m-0 fw-semibold">{dataUser.gendre}</span>
                 <span className="fs14 text-secondary">Mobile phone</span>
               </div>
             </div>
             <div className="d-flex align-items-center gap-3">
               <img width={39} src={imgp1} alt="" />
               <div className="d-flex flex-column">
-                <span className="p-0 m-0">Zero</span>
+                <span className="p-0 m-0 fw-semibold">{dataUser.phone}</span>
                 <span className="fs14 text-secondary">Full Name</span>
               </div>
             </div>
             <div className="d-flex align-items-center gap-3">
               <img width={40} src={imgp4} alt="" />
               <div className="d-flex flex-column">
-                <span className="p-0 m-0">Zero</span>
+                <span className="p-0 m-0 fw-semibold">{dataUser.address}</span>
                 <span className="fs14 text-secondary">Address</span>
               </div>
             </div>

@@ -8,67 +8,9 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import { useNavigate, useParams } from "react-router-dom";
-import Form from "react-bootstrap/Form";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
-
-import Modal from "react-bootstrap/Modal";
-import listData from "../components/Data";
-
-function MyBookModal(props) {
-  const { id } = useParams();
-
-  const navigate = useNavigate();
-  const [checkIn, setCheckIn] = useState({
-    check_in: "",
-    check_out: "",
-  });
-
-  const handleOnChange = (e) => {
-    setCheckIn({
-      ...checkIn,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handle = (e) => {
-    // e.preventDefault();
-    localStorage.setItem("Date", JSON.stringify(checkIn));
-    localStorage.setItem("Data", JSON.stringify(listData[id]));
-    localStorage.setItem("DataId", id);
-  };
-
-  return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Modal heading</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3" style={{ display: "flex", flexDirection: "column" }} controlId="exampleForm.ControlInput1">
-            <Form.Label style={{ fontWeight: "bold" }}>Check-in</Form.Label>
-            <Form.Control type="date" name="check_in" onChange={handleOnChange} />
-          </Form.Group>
-          <Form.Group className="mb-3" style={{ display: "flex", flexDirection: "column" }} controlId="exampleForm.ControlInput1">
-            <Form.Label style={{ fontWeight: "bold" }}>Check-Out</Form.Label>
-            <Form.Control type="date" name="check_out" onChange={handleOnChange} />
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <Button
-          variant="primary"
-          onClick={() => {
-            handle();
-            navigate(`/my-booking/${id}`);
-          }}
-        >
-          Order
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
+import MyBookingModal from "../components/MyBookingModal";
 
 export default function DetailProperty(props) {
   useEffect(() => {
@@ -78,6 +20,8 @@ export default function DetailProperty(props) {
   const [modalSignIn, setModalSignIn] = React.useState(false);
   const [modalSignUp, setModalSignUp] = React.useState(false);
 
+  const [modalShowBooking, setModalShowBooking] = React.useState(false);
+
   const handleSignin = () => {
     setModalSignIn(true);
   };
@@ -85,7 +29,6 @@ export default function DetailProperty(props) {
     setModalSignUp(true);
   };
 
-  const [modalShow, setModalShow] = React.useState(false);
   const { id } = useParams();
   const listData = props.listData;
 
@@ -152,12 +95,12 @@ export default function DetailProperty(props) {
                   Book Now
                 </Button>
               ) : (
-                <Button className=" mt-5 px-5" onClick={() => setModalShow(true)}>
+                <Button className=" mt-5 px-5" onClick={() => setModalShowBooking(true)}>
                   Book Now
                 </Button>
               )}
 
-              <MyBookModal show={modalShow} onHide={() => setModalShow(false)} />
+              <MyBookingModal listData={listData[id - 1]} show={modalShowBooking} onHide={() => setModalShowBooking(false)} />
               <SignIn openSignup={handleSignup} userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} show={modalSignIn} onHide={() => setModalSignIn(false)} />
               <SignUp openSignin={handleSignin} show={modalSignUp} onHide={() => setModalSignUp(false)} />
             </div>
@@ -167,3 +110,4 @@ export default function DetailProperty(props) {
     </>
   );
 }
+
