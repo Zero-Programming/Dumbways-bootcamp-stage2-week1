@@ -77,3 +77,7 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.bgad {
+  background-color: #B1B1B1;
+}

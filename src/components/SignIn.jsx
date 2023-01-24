@@ -2,8 +2,10 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn(props) {
+  const navigate = useNavigate();
   const dataString = localStorage.getItem("UserSignUp");
   const dataUser = JSON.parse(dataString);
 
@@ -16,14 +18,16 @@ export default function SignIn(props) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-
     if (dataUser.userName === props.userSignIn.userName && dataUser.password === props.userSignIn.password) {
       e.preventDefault();
       props.setUserSignIn({
         ...props.userSignIn,
         isLogin: true,
-        listAs : dataUser.listAs,
+        listAs: dataUser.listAs,
       });
+      if (dataUser.listAs === "Owner") {
+        navigate("/home-owner");
+      }
       localStorage.setItem("UserSignIn", JSON.stringify(props.userSignIn));
       console.log(props.userSignIn);
       alert("login succses!");
@@ -52,12 +56,18 @@ export default function SignIn(props) {
             <Form.Label className="fw-bold">Password</Form.Label>
             <Form.Control type="password" placeholder="Password" name="password" onChange={handleOnChange} />
           </Form.Group>
+
           <Button className="w-100" variant="primary" type="submit">
             Submit
           </Button>
           <Form.Text className="text-muted">
             Dont have an account? click{" "}
-            <span onClick={(e) => redirectSignup(e)} className="btn btn-link px-1 py-0">
+            <span
+              onClick={(e) => {
+                redirectSignup(e);
+              }}
+              className="btn btn-link px-1 py-0"
+            >
               Here
             </span>
           </Form.Text>

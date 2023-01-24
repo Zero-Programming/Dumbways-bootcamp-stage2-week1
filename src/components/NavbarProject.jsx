@@ -12,12 +12,12 @@ import "../styles/style.css";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import DropdownLogin from "./Dropdown";
-import { useNavigate } from "react-router-dom";
 
 function NavbarProject(props) {
   const [modalSignIn, setModalSignIn] = React.useState(false);
   const [modalSignUp, setModalSignUp] = React.useState(false);
-  // const navigate = useNavigate()
+
+  const dataUser = JSON.parse(localStorage.getItem("UserSignUp"))
 
   const handleSignup = () => {
     setModalSignUp(true);
@@ -30,7 +30,9 @@ function NavbarProject(props) {
   return (
     <Navbar bg="white" expand="lg" className="fixed-top px-4" style={{ zIndex: "20" }}>
       <Container fluid>
-        <Navbar.Brand href="/" style={{ marginRight: "31%" }}>
+        <Navbar.Brand 
+        {dataUser.listAs === "Owner" ? }
+        href="/" style={{ marginRight: "31%" }}>
           <img src={logo} alt="" width={120} />
         </Navbar.Brand>
 

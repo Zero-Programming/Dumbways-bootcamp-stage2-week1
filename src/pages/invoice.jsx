@@ -16,7 +16,7 @@ export default function Invoice(props) {
     document.body.style.background = "rgba(196, 196, 196, 0.25)";
   });
 
-  const Data = JSON.parse(localStorage.getItem("Data"))
+  const Data = JSON.parse(localStorage.getItem("Data"));
   const getData = JSON.parse(localStorage.getItem("Date"));
   const Profile = JSON.parse(localStorage.getItem("UserSignUp"));
   console.log(Data.amenities);
@@ -38,7 +38,7 @@ export default function Invoice(props) {
             <Col className="" md="auto" lg={4}>
               <h5 className="fw-bold">House Astina</h5>
               <p>{Data.address}</p>
-              <p className="bg-success w-50 text-center p-1 bg-opacity-10 text-success">Waiting Payment</p>
+              <p className="bg-success w-50 text-center p-1 bg-opacity-10 text-success">Approve</p>
             </Col>
             <Col className="" md="auto" lg={4}>
               <div className="d-flex flex-column ">

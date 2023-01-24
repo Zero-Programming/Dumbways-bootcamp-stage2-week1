@@ -7,6 +7,9 @@ import Profile from "../pages/Profile.jsx";
 import MyBooking from "../pages/MyBoking";
 import Invoice from "../pages/Invoice";
 import listData from "../components/Data";
+import HomeOwner from "../pages/HomeOwner";
+import AddProperty from "../pages/AddProperty";
+import PrivateRoute from "./PrivateRoute";
 
 export default function RoutesPage() {
   const [userSignIn, setUserSignIn] = useState({
@@ -15,6 +18,10 @@ export default function RoutesPage() {
     password: "",
     listAs: "",
   });
+
+  const DataUser = (JSON.parse(localStorage.getItem("UserSignUp")))
+
+  console.log(DataUser.listAs)
   return (
     <BrowserRouter>
       <Routes>
@@ -23,6 +30,10 @@ export default function RoutesPage() {
         <Route path="/profile" element={<Profile userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
         <Route path="/my-booking/:id" element={<MyBooking userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
         <Route path="/history/" element={<Invoice userSignIn={userSignIn} setUserSignIn={setUserSignIn} />} />
+        <Route path="/home-owner" element={<HomeOwner userSignIn={userSignIn} setUserSignIn={setUserSignIn} listData={listData} />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/add-property" element={<AddProperty userSignIn={userSignIn} setUserSignIn={setUserSignIn} listData={listData} />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
